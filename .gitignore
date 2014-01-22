@@ -1,3 +1,6 @@
+# Ignore projects, projects in other git branch
+projects/
+
 # Ignore thumbnails created by windows
 Thumbs.db
 

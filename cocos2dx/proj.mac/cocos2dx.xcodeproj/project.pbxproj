@@ -306,6 +306,7 @@
 		469A7DFA16C247C8006FFCB2 /* tinyxml2.h in Headers */ = {isa = PBXBuildFile; fileRef = 469A7DF816C247C8006FFCB2 /* tinyxml2.h */; };
 		46A3939A16E03F4D00210B16 /* ccFPSImages.c in Sources */ = {isa = PBXBuildFile; fileRef = 46A3939816E03F4D00210B16 /* ccFPSImages.c */; };
 		46A3939B16E03F4D00210B16 /* ccFPSImages.h in Headers */ = {isa = PBXBuildFile; fileRef = 46A3939916E03F4D00210B16 /* ccFPSImages.h */; };
+		E33FE2C5188F862000490BEE /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E33FE2C4188F862000490BEE /* libc++.dylib */; };
 		F4D7A74715F269D10081CE26 /* ccTypeInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = F4D7A74615F269D10081CE26 /* ccTypeInfo.h */; };
 /* End PBXBuildFile section */
 
@@ -613,6 +614,7 @@
 		469A7DF816C247C8006FFCB2 /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml2.h; sourceTree = "<group>"; };
 		46A3939816E03F4D00210B16 /* ccFPSImages.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ccFPSImages.c; sourceTree = "<group>"; };
 		46A3939916E03F4D00210B16 /* ccFPSImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccFPSImages.h; sourceTree = "<group>"; };
+		E33FE2C4188F862000490BEE /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		F4D7A74615F269D10081CE26 /* ccTypeInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ccTypeInfo.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -621,6 +623,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E33FE2C5188F862000490BEE /* libc++.dylib in Frameworks */,
 				1A94D35016C2072800D79D09 /* libwebp.a in Frameworks */,
 				1A94D35116C2072800D79D09 /* Foundation.framework in Frameworks */,
 			);
@@ -661,6 +664,7 @@
 		1551A341158F2AB200E66CFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E33FE2C4188F862000490BEE /* libc++.dylib */,
 				1A94D34C16C2014900D79D09 /* libwebp.a */,
 				1551A342158F2AB200E66CFE /* Foundation.framework */,
 			);
@@ -1681,7 +1685,8 @@
 		1551A34D158F2AB200E66CFE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				DSTROOT = /tmp/cocos2dx.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2dx-Prefix.pch";
@@ -1710,7 +1715,8 @@
 		1551A34E158F2AB200E66CFE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/cocos2dx.dst;
 				GCC_OPTIMIZATION_LEVEL = 0;

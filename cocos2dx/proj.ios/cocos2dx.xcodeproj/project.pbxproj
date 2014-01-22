@@ -316,6 +316,7 @@
 		4EF8999A16E207E70040A527 /* CCTMXXMLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EF8998E16E207E70040A527 /* CCTMXXMLParser.cpp */; };
 		4EF8999B16E207E70040A527 /* CCTMXXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EF8998F16E207E70040A527 /* CCTMXXMLParser.h */; };
 		D43F7F8A15C7D8BA00D713FC /* CCTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43F7F8915C7D8BA00D713FC /* CCTouch.cpp */; };
+		E33FE2C8188F86A000490BEE /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E33FE2C7188F86A000490BEE /* libc++.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -631,6 +632,7 @@
 		4EF8998E16E207E70040A527 /* CCTMXXMLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTMXXMLParser.cpp; sourceTree = "<group>"; };
 		4EF8998F16E207E70040A527 /* CCTMXXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTMXXMLParser.h; sourceTree = "<group>"; };
 		D43F7F8915C7D8BA00D713FC /* CCTouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTouch.cpp; sourceTree = "<group>"; };
+		E33FE2C7188F86A000490BEE /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -638,6 +640,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E33FE2C8188F86A000490BEE /* libc++.dylib in Frameworks */,
 				1551A343158F2AB200E66CFE /* Foundation.framework in Frameworks */,
 				1A3199AE16C0E3A200207637 /* libwebp.a in Frameworks */,
 			);
@@ -667,6 +670,7 @@
 		1551A341158F2AB200E66CFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E33FE2C7188F86A000490BEE /* libc++.dylib */,
 				1A3199AD16C0E3A200207637 /* libwebp.a */,
 				1551A342158F2AB200E66CFE /* Foundation.framework */,
 			);
@@ -1724,6 +1728,8 @@
 		1551A34D158F2AB200E66CFE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				DSTROOT = /tmp/cocos2dx.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2dx-Prefix.pch";
@@ -1751,6 +1757,8 @@
 		1551A34E158F2AB200E66CFE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				DSTROOT = /tmp/cocos2dx.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cocos2dx-Prefix.pch";

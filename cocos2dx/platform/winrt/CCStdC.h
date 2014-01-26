@@ -63,15 +63,17 @@ THE SOFTWARE.
 
 #define _WINSOCKAPI_
 // Structure timeval has define in winsock.h, include windows.h for it.
-#include <Windows.h>
-//#include <WinSock2.h>
+//#include <Windows.h>
+#include <WinSock2.h>
 
+/*
 #undef timeval
 struct timeval
 {
  	long tv_sec;		// seconds
  	long tv_usec;    // microSeconds
 };
+*/
 
 struct timezone
 {

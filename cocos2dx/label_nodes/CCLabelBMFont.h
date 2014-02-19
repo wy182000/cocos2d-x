@@ -120,6 +120,7 @@ public://@public
     ccBMFontPadding    m_tPadding;
     //! atlas name
     std::string m_sAtlasName;
+    std::string m_sTextureName;
     //! values for kerning
     tCCKerningHashElement *m_pKerningDictionary;
     
@@ -139,17 +140,17 @@ public:
     const char * description();
 
     /** allocates a CCBMFontConfiguration with a FNT file */
-    static CCBMFontConfiguration * create(const char *FNTfile);
+    static CCBMFontConfiguration * create(const char *FNTfile, void* data = NULL, size_t size = 0);
 
     /** initializes a BitmapFontConfiguration with a FNT file */
-    bool initWithFNTfile(const char *FNTfile);
+    bool initWithFNTfile(const char *FNTfile, void* data = NULL, size_t size = 0);
     
     inline const char* getAtlasName(){ return m_sAtlasName.c_str(); }
     inline void setAtlasName(const char* atlasName) { m_sAtlasName = atlasName; }
     
     std::set<unsigned int>* getCharacterSet() const;
 private:
-    std::set<unsigned int>* parseConfigFile(const char *controlFile);
+    std::set<unsigned int>* parseConfigFile(const char *controlFile, void* data = NULL, size_t size = 0);
     void parseCharacterDefinition(std::string line, ccBMFontDef *characterDefinition);
     void parseInfoArguments(std::string line);
     void parseCommonArguments(std::string line);
@@ -308,7 +309,7 @@ protected:
 
 /** Free function that parses a FNT file a place it on the cache
 */
-CC_DLL CCBMFontConfiguration * FNTConfigLoadFile( const char *file );
+CC_DLL CCBMFontConfiguration * FNTConfigLoadFile( const char *file, void* data = NULL, size_t size = 0 );
 /** Purges the FNT config cache
 */
 CC_DLL void FNTConfigRemoveCache( void );

@@ -64,7 +64,7 @@ static unsigned short* copyUTF16StringN(unsigned short* str)
 //
 static CCDictionary* s_pConfigurations = NULL;
 
-CCBMFontConfiguration* FNTConfigLoadFile( const char *fntFile)
+CCBMFontConfiguration* FNTConfigLoadFile( const char *fntFile, void* data, size_t size )
 {
     CCBMFontConfiguration* pRet = NULL;
 
@@ -76,7 +76,7 @@ CCBMFontConfiguration* FNTConfigLoadFile( const char *fntFile)
     pRet = (CCBMFontConfiguration*)s_pConfigurations->objectForKey(fntFile);
     if( pRet == NULL )
     {
-        pRet = CCBMFontConfiguration::create(fntFile);
+        pRet = CCBMFontConfiguration::create(fntFile, data, size);
         if (pRet)
         {
             s_pConfigurations->setObject(pRet, fntFile);
@@ -99,10 +99,10 @@ void FNTConfigRemoveCache( void )
 //BitmapFontConfiguration
 //
 
-CCBMFontConfiguration * CCBMFontConfiguration::create(const char *FNTfile)
+CCBMFontConfiguration * CCBMFontConfiguration::create(const char *FNTfile, void* data, size_t size)
 {
     CCBMFontConfiguration * pRet = new CCBMFontConfiguration();
-    if (pRet->initWithFNTfile(FNTfile))
+    if (pRet->initWithFNTfile(FNTfile, data, size))
     {
         pRet->autorelease();
         return pRet;
@@ -111,12 +111,12 @@ CCBMFontConfiguration * CCBMFontConfiguration::create(const char *FNTfile)
     return NULL;
 }
 
-bool CCBMFontConfiguration::initWithFNTfile(const char *FNTfile)
+bool CCBMFontConfiguration::initWithFNTfile(const char *FNTfile, void* data, size_t size)
 {
     m_pKerningDictionary = NULL;
     m_pFontDefDictionary = NULL;
     
-    m_pCharacterSet = this->parseConfigFile(FNTfile);
+    m_pCharacterSet = this->parseConfigFile(FNTfile, data, size);
     
     if (! m_pCharacterSet)
     {
@@ -146,6 +146,7 @@ CCBMFontConfiguration::~CCBMFontConfiguration()
     this->purgeFontDefDictionary();
     this->purgeKerningDictionary();
     m_sAtlasName.clear();
+    m_sTextureName.clear();
     CC_SAFE_DELETE(m_pCharacterSet);
 }
 
@@ -181,10 +182,12 @@ void CCBMFontConfiguration::purgeFontDefDictionary()
     }
 }
 
-std::set<unsigned int>* CCBMFontConfiguration::parseConfigFile(const char *controlFile)
+std::set<unsigned int>* CCBMFontConfiguration::parseConfigFile(const char *controlFile, void* data, size_t size)
 {    
     std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(controlFile);
-    CCString *contents = CCString::createWithContentsOfFile(fullpath.c_str());
+    CCString* contents;
+    if (data) contents = CCString::createWithData((const unsigned char*)data, size);
+    else contents = CCString::createWithContentsOfFile(fullpath.c_str());
 
     CCAssert(contents, "CCBMFontConfiguration::parseConfigFile | Open file error.");
     
@@ -277,6 +280,7 @@ void CCBMFontConfiguration::parseImageFileName(std::string line, const char *fnt
     index2 = line.find('"', index);
     value = line.substr(index, index2-index);
 
+    m_sTextureName = value;
     m_sAtlasName = CCFileUtils::sharedFileUtils()->fullPathFromRelativeFile(value.c_str(), fntFile);
 }
 

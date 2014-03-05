@@ -263,11 +263,11 @@ void CCEditBoxImplWin::openKeyboard()
 	if (placeHolder.length() == 0)
 		placeHolder = "Enter value";
 
-	char pText[100]= {0};
+	char pText[512]= {0};
 	std::string text = getText();
 	if (text.length())
-		strncpy(pText, text.c_str(), 100);
-	bool didChange = CWin32InputBox::InputBox("Input", placeHolder.c_str(), pText, 100, false) == IDOK;
+		strncpy(pText, text.c_str(), 512);
+	bool didChange = CWin32InputBox::InputBox("Input", placeHolder.c_str(), pText, 512, false) == IDOK;
 	
 	if (didChange) 	
 		setText(pText);
